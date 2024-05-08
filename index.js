@@ -12,7 +12,7 @@ app.use(require('./src/middlewares/queryHandler'))
 app.all('/',(req,res)=>{
     res.send('welcome')
 })
-
+app.use(require('./src/routes/index'))
 app.use(require('./src/middlewares/errorHandler'))
 
 

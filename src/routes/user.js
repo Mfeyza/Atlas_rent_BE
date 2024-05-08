@@ -1,7 +1,7 @@
 "use strict";
 
 const router = require("express").Router();
-const { isAdmin, isLogin, isLandLord } = require("../middlewares/permissons");
+const { isAdmin, isLogin, isLandLord } = require("../middlewares/permissions");
 const {
   list,
   create,

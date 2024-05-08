@@ -21,7 +21,7 @@ module.exports = {
     }
   },
   isLandLord: (req, res, next) => {
-    return next();
+    // return next();
     if (req.user && req.user.isActive && req.user.isLandLord) {
       return next();
     } else {
