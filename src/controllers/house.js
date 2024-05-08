@@ -24,7 +24,8 @@ module.exports={
         }
 
         const data= await res.getModelList(House,customFilter,[
-            {path:'rating'}
+            {path:'rating'},
+            {path:'userId'}
         ])
         res.status(200).send({
             error:false,
