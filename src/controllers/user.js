@@ -14,9 +14,14 @@ module.exports = {
     });
   },
   create: async (req, res) => {
-    req.body.isAdmin = false;
+    console.log(req.body)
+    if(!req.body.isActive){
+      req.body.isActive=true
+    }
+    // req.body.isAdmin = false;
     const data = await User.create(req.body);
     //token
+    
     const tokenData = await Token.create({
       userId: data._id,
       token: passwordEncrypt(data._id + Date.now()),
@@ -24,10 +29,11 @@ module.exports = {
     res.status(201).send({
       error: false,
       token: tokenData.token,
-      data,
+      data
     });
   },
   read: async (req, res) => {
+    console.log(req.user)
     const customFilters = req.user?.isAdmin
       ? { _id: req.params.id }
       : { _id: req.user._id };

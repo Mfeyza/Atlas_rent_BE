@@ -3,14 +3,18 @@
 const User = require("../models/user");
 const Token = require("../models/token");
 const passwordEncrypt = require("../helpers/passwordEncrypt");
+const jwt=require('jsonwebtoken')
 
 module.exports = {
   login: async (req, res) => {
     const { username, email, password } = req.body;
     if ((username || email) && password) {
       const user = await User.findOne({ $or: [{ username }, { email }] });
-      if (user && user.password == passwordEncrypt(password)) {
+     console.log(user.password,passwordEncrypt(password))
+      if (user && user.password === passwordEncrypt(password)) {
+        console.log(user)
         if (user.isActive) {
+        
           let tokenData = await Token.findOne({ userId: user.id });
           if (!tokenData)
             tokenData = await Token.create({
@@ -42,7 +46,7 @@ module.exports = {
             expiresIn: accessInfo.time,
           });
           const refreshToken = jwt.sign(refreshInfo.data, refreshInfo.key, {
-            expressIn: refreshInfo.time,
+            expiresIn: refreshInfo.time,
           });
 
           res.status(200).send({

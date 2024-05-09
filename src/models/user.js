@@ -1,6 +1,7 @@
 'use strict'
 
 const { mongoose } = require("../configs/dbConnection")
+const passwordEncrypt = require("../helpers/passwordEncrypt");
 
 const UserSchema=new mongoose.Schema({
     username:{
@@ -14,6 +15,7 @@ const UserSchema=new mongoose.Schema({
         type:String,
         required:true,
         trim:true,
+        set: (password) => passwordEncrypt(password),
     },
     email: {
         type: String,

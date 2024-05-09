@@ -10,12 +10,12 @@ const {
   delete: deleteUser,
 } = require("../controllers/user");
 
-router.route("/").get(isLogin, list).post(create);
+router.route("/").get(list).post(create);
 router
   .route("/:id")
-  .get(isLogin, read)
+  .get(read)
   .put(isLogin, update)
   .patch(isLogin, update)
-  .delete(isAdmin, deleteUser);
+  .delete(deleteUser);
 
 module.exports = router;
