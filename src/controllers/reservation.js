@@ -48,7 +48,7 @@ module.exports={
     },
     read: async (req,res)=>{
         let customFilter={}
-        if (!req.user.isAdmin && !req.user.isStaff) {
+        if (!req.user.isAdmin && !req.user.isLandLord) {
             customFilter = { userId: req.user._id }
         }
         const data= await Reservation.findOne({_id:req.params.id,...customFilter}).populate([

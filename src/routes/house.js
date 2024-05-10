@@ -4,13 +4,13 @@ const {isAdmin,isLogin,isLandLord}=require('../middlewares/permissions')
 const {read,update,list,delete:deleteHouse,create}=require('../controllers/house')
 
 router.route('/')
-    .get(isLogin, list)  
-    .post(isAdmin, isLandLord, create)  
+    .get( list)  
+    .post(create)  
 
 router.route('/:id')
     .get(isLogin, read)  
-    .put(isLandLord, isAdmin, update)  
-    .patch(isLandLord, isAdmin, update)  
-    .delete(isLandLord, isAdmin, deleteHouse)  
+    .put(isLandLord,  update)  
+    .patch(isLandLord ,update)  
+    .delete(isLandLord, deleteHouse)  
 
 module.exports = router

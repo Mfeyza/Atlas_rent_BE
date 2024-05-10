@@ -2,6 +2,10 @@
 const {mongoose}=require('../configs/dbConnection')
 
 const HouseSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      },
     views: [{
         viewerId: {
             type: mongoose.Schema.Types.ObjectId,

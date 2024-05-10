@@ -35,6 +35,9 @@ module.exports={
     },
     
     create : async(req,res)=>{
+        console.log(req.user)
+        req.body.createdId = req.user.id
+        req.body.updatedId = req.user.id
         const data=await House.create(req.body)
         res.status(201).send({
             error:false,

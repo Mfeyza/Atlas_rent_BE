@@ -13,7 +13,7 @@ module.exports = {
   },
   isAdmin: (req, res, next) => {
     // return next();
-    if (req.user && req.user.isActive && req.user.isAdmin) {
+    if (req.user && req.user.isActive && req.user.isAdmin ) {
       next();
     } else {
       res.errorStatusCode = 403;
@@ -22,7 +22,7 @@ module.exports = {
   },
   isLandLord: (req, res, next) => {
     // return next();
-    if (req.user && req.user.isActive && req.user.isLandLord) {
+    if (req.user && req.user.isActive && req.user.isLandLord ||req.user.isAdmin ) {
       return next();
     } else {
       res.errorStatusCode = 403;

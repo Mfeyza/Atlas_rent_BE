@@ -10,7 +10,7 @@ const {
   delete: deleteUser,
 } = require("../controllers/user");
 
-router.route("/").get(list).post(create);
+router.route("/").get(list).post(create).put(update).patch(update);
 router
   .route("/:id")
   .get(read)
