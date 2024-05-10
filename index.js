@@ -11,9 +11,17 @@ dbConnection()
 app.use(express.json())
 app.use(require('./src/middlewares/authentication'))
 app.use(require('./src/middlewares/queryHandler'))
-app.all('/',(req,res)=>{
-    res.send('welcome')
-    user:req.user
+app.all('/', (req, res) => {
+    res.send({
+        error: false,
+        message: 'Welcome to RENT API',
+        documents: {
+            swagger: '/documents/swagger',
+            redoc: '/documents/redoc',
+            json: '/documents/json',
+        },
+    
+    })
 })
 app.use(require('./src/routes/index'))
 app.use(require('./src/middlewares/errorHandler'))

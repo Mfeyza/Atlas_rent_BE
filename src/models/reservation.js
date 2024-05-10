@@ -20,7 +20,7 @@ const ReservationSchema = new mongoose.Schema({
         required: true
     },
     amount: {
-        type: mongoose.Schema.Types.Decimal128, //stores decimal numbers correctly,prevents errors
+        type:Number,
         required: true
     },
     createdId: {
