@@ -4,6 +4,20 @@ const House = require("../models/house");
 
 module.exports = {
   list: async (req, res) => {
+      /*
+            #swagger.tags = ["Reservations"]
+            #swagger.summary = "List Reservations"
+            #swagger.description = `
+                You can send query with endpoint for filter[], search[], sort[], page and limit.
+                <ul> Examples:
+                    <li>URL/?<b>filter[field1]=value1&filter[field2]=value2</b></li>
+                    <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>
+                    <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>
+                    <li>URL/?<b>page=2&limit=1</b></li>
+                </ul>
+            `
+        */
+
     let customFilter = {};
     if (!req.user.isAdmin && !req.user.isLandLord) {
       customFilter = { userId: req.user._id };
@@ -20,6 +34,10 @@ module.exports = {
   },
 
   create: async (req, res) => {
+       /*
+            #swagger.tags = ["Reservations"]
+            #swagger.summary = "Create Reservation"
+        */
     if (!req.body?.houseId) {
       throw new Error("Please enter houseId");
     }
@@ -59,6 +77,10 @@ module.exports = {
     }
   },
   read: async (req, res) => {
+      /*
+            #swagger.tags = ["Reservations"]
+            #swagger.summary = "Get Single Reservation"
+        */
     let customFilter = {};
     if (!req.user.isAdmin && !req.user.isLandLord) {
       customFilter = { userId: req.user._id };
@@ -76,6 +98,10 @@ module.exports = {
     });
   },
   update: async (req, res) => {
+     /*
+            #swagger.tags = ["Reservations"]
+            #swagger.summary = "Update Reservation"
+        */
     if (!req.body?.houseId) {
       throw new Error("Please enter houseId");
     }
@@ -99,6 +125,10 @@ module.exports = {
     });
   },
   delete: async (req, res) => {
+     /*
+            #swagger.tags = ["Reservations"]
+            #swagger.summary = "Delete Reservation"
+        */
     const data = await Reservation.deleteOne({ _id: req.params.id });
     console.log(data)
     res.status(data.deletedCount ? 204 : 404).send({

@@ -5,6 +5,19 @@ const Reservation = require('../models/reservation')
 
 module.exports={
     list: async(req,res)=>{
+             /*
+            #swagger.tags = ["Houses"]
+            #swagger.summary = "List Houses"
+            #swagger.description = `
+                You can send query with endpoint for filter[], search[], sort[], page and limit.
+                <ul> Examples:
+                    <li>URL/?<b>filter[field1]=value1&filter[field2]=value2</b></li>
+                    <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>
+                    <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>
+                    <li>URL/?<b>page=2&limit=1</b></li>
+                </ul>
+            `
+        */
         let customFilter = { isAvailable: true }
         const { startDate: getStartDate, endDate: getEndDate } = req.query
          if (getStartDate && getEndDate) {
@@ -35,6 +48,11 @@ module.exports={
     },
     
     create : async(req,res)=>{
+         /*
+            #swagger.tags = ["Houses"]
+            #swagger.summary = "Create House"
+        */
+
         console.log(req.user)
         req.body.createdId = req.user.id
         req.body.updatedId = req.user.id
@@ -45,6 +63,11 @@ module.exports={
         })
     },
     read: async (req,res)=>{
+           /*
+            #swagger.tags = ["Houses"]
+            #swagger.summary = "Get Single House"
+        */
+
         const data= await House.findOne({_id:req.params.id})
         res.status(200).send({
             error:false,
@@ -52,6 +75,10 @@ module.exports={
         })
     },
     update: async(req,res)=>{
+          /*
+            #swagger.tags = ["Houses"]
+            #swagger.summary = "Update House"
+        */
         const data= await House.updateOne({_id:req.params.id},req.body,{runValidators:true})
         res.status(202).send({
             error:false,
@@ -60,6 +87,10 @@ module.exports={
         })
     },
     delete: async (req,res)=>{
+         /*
+            #swagger.tags = ["Houses"]
+            #swagger.summary = "Delete House"
+        */
         const data= await House.deleteOne({_id:req.params.id})
         res.status(data.deletedCount? 204 : 404).send({
             error: !data.deletedCount,
