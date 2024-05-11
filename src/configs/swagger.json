@@ -934,7 +934,7 @@
         }
       }
     },
-    "Car": {
+    "House": {
       "type": "object",
       "properties": {
         "userId": {
