@@ -24,7 +24,7 @@ module.exports = {
     }
     const data = await res.getModelList(Reservation, customFilter, [
       { path: "userId" },
-      { path: "houseId" },
+      { path: "house" },
     ]);
     res.status(200).send({
       error: false,
@@ -38,8 +38,8 @@ module.exports = {
             #swagger.tags = ["Reservations"]
             #swagger.summary = "Create Reservation"
         */
-    if (!req.body?.houseId) {
-      throw new Error("Please enter houseId");
+    if (!req.body?.house) {
+      throw new Error("Please enter house");
     }
     req.body.createdId = req.user._id;
     req.body.updatedId = req.user._id;
@@ -48,7 +48,7 @@ module.exports = {
       req.body.userId = req.user._id;
     }
     if (!req.body.amount) {
-      const houseData = await House.findOne({ _id: req.body.houseId });
+      const houseData = await House.findOne({ _id: req.body.house });
       const startDate = new Date(req.body.startDate);
       const endDate = new Date(req.body.endDate);
       const days = (endDate - startDate) / (1000 * 60 * 60 * 24);
@@ -90,7 +90,7 @@ module.exports = {
       ...customFilter,
     }).populate([
       { path: "userId", select: "username firstName lastName image" },
-      { path: "houseId" },
+      { path: "house" },
     ]);
     res.status(200).send({
       error: false,
@@ -102,14 +102,14 @@ module.exports = {
             #swagger.tags = ["Reservations"]
             #swagger.summary = "Update Reservation"
         */
-    if (!req.body?.houseId) {
-      throw new Error("Please enter houseId");
+    if (!req.body?.house) {
+      throw new Error("Please enter house");
     }
     if (!req.user.isAdmin) {
       delete req.body.userId;
     }
     if (!req.body.amount) {
-      const houseData = await House.findOne({ _id: req.body.houseId });
+      const houseData = await House.findOne({ _id: req.body.house });
       const startDate = new Date(req.body.startDate);
       const endDate = new Date(req.body.endDate);
       const days = (endDate - startDate) / (1000 * 60 * 60 * 24);

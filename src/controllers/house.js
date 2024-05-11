@@ -32,8 +32,17 @@ module.exports={
                 customFilter._id = { $nin: reservedHouses }
             }
         } else {
-            req.errorStatusCode = 401
-            throw new Error('startDate and endDate queries are required.')
+            // req.errorStatusCode = 401
+            // throw new Error('startDate and endDate queries are required.')
+            const data= await res.getModelList(House,customFilter,[
+                {path:'rating',select:'rating -_id' },
+                {path:'userId'}
+            ])
+            res.status(200).send({
+                error:false,
+                details:await res.getModelListDetails(House),
+                data
+            })
         }
 
         const data= await res.getModelList(House,customFilter,[
@@ -92,9 +101,14 @@ module.exports={
             #swagger.summary = "Delete House"
         */
         const data= await House.deleteOne({_id:req.params.id})
+        await Rating.deleteMany({houseId:req.params.id})
+        await Reservation.deleteMany({houseId:req.params.id})
+
+        console.log(data)
         res.status(data.deletedCount? 204 : 404).send({
             error: !data.deletedCount,
-            data
+            data,
+            message:"aaa"
         })
     
     }

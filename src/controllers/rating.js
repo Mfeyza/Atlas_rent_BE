@@ -1,5 +1,6 @@
 'use strict'
 const Rating= require('../models/rating')
+const House=require('../models/house')
 
 module.exports={
     list: async(req,res)=>{
@@ -29,8 +30,9 @@ module.exports={
             #swagger.tags = ["Ratings"]
             #swagger.summary = "Create Rating"
         */
-
+        req.body.createdId=req.body.userId
         const data=await Rating.create(req.body)
+        await House.updateOne({_id:data.houseId},{$push:{rating:data}})
         res.status(201).send({
             error:false,
             data

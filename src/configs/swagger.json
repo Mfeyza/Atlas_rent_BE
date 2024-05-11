@@ -4,10 +4,10 @@
     "version": "1.0.0",
     "title": "REST API",
     "description": "",
-    "termsOfService": "http://www.clarusway.com/#",
+    "termsOfService": "http://www.mfy.com/#",
     "contact": {
       "name": "",
-      "email": "qadir@clarusway.com"
+      "email": "mrymfyza@hotmail.com"
     },
     "license": {
       "name": "ISC"
@@ -534,7 +534,7 @@
                 "amount": {
                   "example": "any"
                 },
-                "houseId": {
+                "house": {
                   "example": "any"
                 },
                 "startDate": {
@@ -600,7 +600,7 @@
                 "amount": {
                   "example": "any"
                 },
-                "houseId": {
+                "house": {
                   "example": "any"
                 },
                 "startDate": {
@@ -660,7 +660,7 @@
                 "amount": {
                   "example": "any"
                 },
-                "houseId": {
+                "house": {
                   "example": "any"
                 },
                 "startDate": {
@@ -676,6 +676,94 @@
         "responses": {
           "202": {
             "description": "Accepted"
+          }
+        }
+      }
+    },
+    "/ratings/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/ratings/{id}": {
+      "get": {
+        "tags": [
+          "Ratings"
+        ],
+        "summary": "Get Single Rating",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "patch": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
           }
         }
       }
@@ -1017,15 +1105,18 @@
             }
           }
         },
-        "rating": {
-          "type": "object",
-          "properties": {
-            "type": {
-              "type": "function"
-            },
-            "ref": {
-              "type": "string",
-              "example": "Rating"
+        "ratings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "function"
+              },
+              "ref": {
+                "type": "string",
+                "example": "Rating"
+              }
             }
           }
         },
@@ -1082,7 +1173,7 @@
             }
           }
         },
-        "houseId": {
+        "house": {
           "type": "object",
           "properties": {
             "type": {

@@ -58,10 +58,10 @@ const HouseSchema = new mongoose.Schema({
     isWashingMachine:{
         type:Boolean
     },
-    rating:{
+    ratings:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Rating'
-    },
+        ref: 'Rating',
+   }],
     createdId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
