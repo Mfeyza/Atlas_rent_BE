@@ -6,7 +6,7 @@ const Reservation = require('../models/reservation')
 module.exports={
     list: async(req,res)=>{
              /*
-            #swagger.tags = ["Houses"]
+              #swagger.tags = ["Houses"]
             #swagger.summary = "List Houses"
             #swagger.description = `
                 You can send query with endpoint for filter[], search[], sort[], page and limit.
@@ -58,7 +58,7 @@ module.exports={
     
     create : async(req,res)=>{
          /*
-            #swagger.tags = ["Houses"]
+               #swagger.tags = ["Houses"]
             #swagger.summary = "Create House"
         */
 
@@ -85,7 +85,7 @@ module.exports={
     },
     update: async(req,res)=>{
           /*
-            #swagger.tags = ["Houses"]
+               #swagger.tags = ["Houses"]
             #swagger.summary = "Update House"
         */
         const data= await House.updateOne({_id:req.params.id},req.body,{runValidators:true})
@@ -97,7 +97,7 @@ module.exports={
     },
     delete: async (req,res)=>{
          /*
-            #swagger.tags = ["Houses"]
+              #swagger.tags = ["Houses"]
             #swagger.summary = "Delete House"
         */
         const data= await House.deleteOne({_id:req.params.id})
