@@ -37,9 +37,9 @@ const document = {
 	security: [{ Token: [] }, { Bearer: [] }],
 	definitions: {
 		"User": require('./src/models/user').schema.obj,
-		"House":require('./src/models/house').schema.obj,
-		"Reservation":require('./src/models/reservation').schema.obj,
-		"Rating":require('./src/models/rating').schema.obj,
+		"House": require('./src/models/house').schema.obj,
+		"Reservation": require('./src/models/reservation').schema.obj,
+		"Rating": require('./src/models/rating').schema.obj,
 
 	}
 }
