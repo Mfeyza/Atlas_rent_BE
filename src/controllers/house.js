@@ -26,7 +26,7 @@ module.exports={
                     { startDate: { $gt: getEndDate } },
                     { endDate: { $lt: getStartDate } } 
                 ]
-            }, { _id: 0, houseId: 1 }).distinct('houseId')
+            }, { _id: 0, house: 1 }).distinct('house')
           
             if (reservedHouses.length) {
                 customFilter._id = { $nin: reservedHouses }
@@ -35,7 +35,7 @@ module.exports={
             // req.errorStatusCode = 401
             // throw new Error('startDate and endDate queries are required.')
             const data= await res.getModelList(House,customFilter,[
-                {path:'rating',select:'rating -_id' },
+                {path:'ratings',select:'ratings -_id' },
                 {path:'userId'}
             ])
             res.status(200).send({
