@@ -8,7 +8,7 @@ router.route('/')
     .post(create)  
 
 router.route('/:id')
-    .get(isLogin, read)  
+    .get(read)  
     .put(isLandLord,  update)  
     .patch(isLandLord ,update)  
     .delete(isLandLord, deleteHouse)  
