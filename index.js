@@ -1,5 +1,7 @@
 const express= require('express')
 const app= express()
+const cors = require('cors');
+
 
 require('dotenv').config()
 // const HOST=process.env?.HOST || '127.0.0.1'
@@ -25,6 +27,10 @@ app.all('/', (req, res) => {
 })
 app.use(require('./src/routes/index'))
 app.use(require('./src/middlewares/errorHandler'))
+app.use(cors({
+  
+    origin: 'http://localhost:3000'
+}))
 
 
 app.listen(PORT,()=> console.log(`http://:${PORT}`))
