@@ -1,5 +1,6 @@
 'use strict'
 const House= require('../models/house')
+const User=require('../models/user')
 const Rating=require('../models/rating')
 const Reservation = require('../models/reservation')
 
@@ -36,7 +37,7 @@ module.exports={
             // throw new Error('startDate and endDate queries are required.')
             const data= await res.getModelList(House,customFilter,[
                 {path:'ratings',select:'ratings -_id' },
-                {path:'userId'}
+                {path:'userId',select:'users'}
             ])
             res.status(200).send({
                 error:false,
