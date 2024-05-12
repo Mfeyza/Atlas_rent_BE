@@ -10,6 +10,10 @@ const PORT=process.env?.PORT || 8000
 require('express-async-errors')
 const {dbConnection}=require('./src/configs/dbConnection')
 dbConnection()
+app.use(cors({
+    origin: 'http://localhost:3000'
+}))
+
 app.use(express.json())
 app.use(require('./src/middlewares/authentication'))
 app.use(require('./src/middlewares/queryHandler'))
@@ -27,9 +31,6 @@ app.all('/', (req, res) => {
 })
 app.use(require('./src/routes/index'))
 app.use(require('./src/middlewares/errorHandler'))
-app.use(cors({
-    origin: 'http://localhost:3000'
-}))
 
 
 app.listen(PORT,()=> console.log(`http://:${PORT}`))
