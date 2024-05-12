@@ -7,7 +7,7 @@ const {
   create,
   update,
   read,
-  delete: deleteUser,
+   deleteUser,
 } = require("../controllers/user");
 
 router.route("/").get(list).post(create).put(update).patch(update);

@@ -124,7 +124,7 @@ module.exports = {
       new: await Reservation.findOne({ _id: req.params.id }),
     });
   },
-  delete: async (req, res) => {
+  deleteReservation: async (req, res) => {
      /*
             #swagger.tags = ["Reservations"]
             #swagger.summary = "Delete Reservation"

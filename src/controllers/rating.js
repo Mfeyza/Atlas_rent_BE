@@ -66,7 +66,7 @@ module.exports={
        }
         
     },
-    delete: async (req,res)=>{
+    deleteRating: async (req,res)=>{
            /*
             #swagger.tags = ["Ratings"]
             #swagger.summary = "Delete Rating"

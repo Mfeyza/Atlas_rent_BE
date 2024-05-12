@@ -1,7 +1,7 @@
 'use strict'
 const router = require('express').Router()
 const {isAdmin,isLogin,isLandLord}=require('../middlewares/permissions')
-const {read,update,list,delete:deleteHouse,create}=require('../controllers/house')
+const {read,update,list,deleteHouse,create}=require('../controllers/house')
 
 router.route('/')
     .get( list)  

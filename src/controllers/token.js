@@ -61,7 +61,7 @@ update: async(req,res)=>{
         new: await Token.findOne({_id:req.params.id})
     })
 },
-delete: async (req,res)=>{
+deleteToken: async (req,res)=>{
       /*
             #swagger.tags = ["Tokens"]
             #swagger.summary = "Delete Token"

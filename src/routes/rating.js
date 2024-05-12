@@ -2,7 +2,7 @@
 
 const router = require('express').Router()
 const {isAdmin,isLogin,isLandLord}=require('../middlewares/permissions')
-const {read,update,list,delete:deleteRating,create}=require('../controllers/rating')
+const {read,update,list,deleteRating,create}=require('../controllers/rating')
 
 router.route('/')
 .get(list)

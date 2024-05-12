@@ -2,7 +2,7 @@
 
 const router = require('express').Router()
 const {isAdmin}=require('../middlewares/permissions')
-const {read,update,list,delete:deleteToken,create}=require('../controllers/token')
+const {read,update,list,deleteToken,create}=require('../controllers/token')
 
 router.use(isAdmin)
 router.route('/')

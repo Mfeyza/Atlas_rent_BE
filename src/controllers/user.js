@@ -87,7 +87,7 @@ module.exports = {
       new: await User.findOne(customFilters),
     });
   },
-  delete: async (req, res) => {
+deleteUser: async (req, res) => {
         /*
             #swagger.tags = ["Users"]
             #swagger.summary = "Delete User"

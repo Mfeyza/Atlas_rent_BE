@@ -2,7 +2,7 @@
 
 const router = require('express').Router()
 const {isAdmin,isLogin,isLandLord}=require('../middlewares/permissions')
-const {read,update,list,delete:deleteReservation,create}=require('../controllers/reservation')
+const {read,update,list,deleteReservation,create}=require('../controllers/reservation')
 
 router.route('/')
 .get(isAdmin,list)//?
