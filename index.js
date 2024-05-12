@@ -27,7 +27,9 @@ app.all('/', (req, res) => {
 })
 app.use(require('./src/routes/index'))
 app.use(require('./src/middlewares/errorHandler'))
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:3000'
+}))
 
 
 app.listen(PORT,()=> console.log(`http://:${PORT}`))
