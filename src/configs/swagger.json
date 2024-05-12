@@ -266,6 +266,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete User",
         "description": "",
         "parameters": [
           {
@@ -276,8 +280,11 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -376,6 +383,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Tokens"
+        ],
+        "summary": "Delete Token",
         "description": "",
         "parameters": [
           {
@@ -386,8 +397,11 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -464,6 +478,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Houses"
+        ],
+        "summary": "Delete House",
         "description": "",
         "parameters": [
           {
@@ -474,8 +492,11 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -620,6 +641,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Reservations"
+        ],
+        "summary": "Delete Reservation",
         "description": "",
         "parameters": [
           {
@@ -630,8 +655,11 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -736,6 +764,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Ratings"
+        ],
+        "summary": "Delete Rating",
         "description": "",
         "parameters": [
           {
@@ -746,8 +778,11 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -937,7 +972,7 @@
     "House": {
       "type": "object",
       "properties": {
-        "userId": {
+        "user": {
           "type": "object",
           "properties": {
             "type": {
