@@ -2,7 +2,7 @@
 const {mongoose}=require('../configs/dbConnection')
 
 const HouseSchema = new mongoose.Schema({
-    user: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
       },

@@ -37,7 +37,7 @@ module.exports={
             // throw new Error('startDate and endDate queries are required.')
             const data= await res.getModelList(House,customFilter,[
                 {path:'ratings',select:'ratings -_id' },
-                {path:'user',select:'user'}
+                {path:'createdId'}
             ])
             res.status(200).send({
                 error:false,
@@ -63,7 +63,6 @@ module.exports={
             #swagger.summary = "Create House"
         */
 
-        console.log(req.user)
         req.body.createdId = req.user.id
         req.body.updatedId = req.user.id
         const data=await House.create(req.body)
@@ -77,8 +76,7 @@ module.exports={
             #swagger.tags = ["Houses"]
             #swagger.summary = "Get Single House"
         */
-
-        const data= await House.findOne({_id:req.params.id})
+        const data= await House.findOne({_id:req.params.id}).populate('createdId')
         res.status(200).send({
             error:false,
             data

@@ -11,6 +11,6 @@ router.route('/:id')
     .get(read)  
     .put(isLandLord,  update)  
     .patch(isLandLord ,update)  
-    .delete(isLandLord, deleteHouse)  
+    .delete( deleteHouse)  
 
 module.exports = router
