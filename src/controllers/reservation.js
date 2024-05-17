@@ -24,8 +24,8 @@ module.exports = {
       customFilter = { userId: req.user._id };
     }
     if (req.query.author) {
-      const data = await Reservation.find({ userId: req.query.author },[
-        { path: "userId" },
+      const data = await Reservation.find({ userId: req.query.author }).populate([
+        { path: "userId", select: "username firstName lastName image" },
         { path: "house" },
       ])
 
