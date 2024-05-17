@@ -17,11 +17,23 @@ module.exports = {
                 </ul>
             `
         */
-
+  //  if (req.query.author) {
+  //  const data = await Reservation.find({ userId: req.query.author });
     let customFilter = {};
     if (!req.user.isAdmin && !req.user.isLandLord) {
       customFilter = { userId: req.user._id };
     }
+    if (req.query.author) {
+      const data = await Reservation.find({ userId: req.query.author })
+      res.status(200).send({
+        error: false,
+        details: await res.getModelListDetails(Reservation, {
+          userId: req.query.author,
+        }),
+        data,
+      });
+    }else{
+    
     const data = await res.getModelList(Reservation, customFilter, [
       { path: "userId" },
       { path: "house" },
@@ -31,7 +43,8 @@ module.exports = {
       details: await res.getModelListDetails(Reservation, customFilter),
       data,
     });
-  },
+    console.log(req.params)
+  }},
 
   create: async (req, res) => {
        /*
@@ -85,6 +98,7 @@ module.exports = {
     if (!req.user.isAdmin && !req.user.isLandLord) {
       customFilter = { userId: req.user._id };
     }
+    console.log(req.params);
     const data = await Reservation.findOne({
       _id: req.params.id,
       ...customFilter,

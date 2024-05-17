@@ -23,6 +23,9 @@ const ReservationSchema = new mongoose.Schema({
         type:Number,
         required: true
     },
+    bodyCount:{
+     type:Number
+    },
     createdId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
