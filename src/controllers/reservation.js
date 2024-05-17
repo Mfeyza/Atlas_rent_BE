@@ -24,7 +24,11 @@ module.exports = {
       customFilter = { userId: req.user._id };
     }
     if (req.query.author) {
-      const data = await Reservation.find({ userId: req.query.author })
+      const data = await Reservation.find({ userId: req.query.author },[
+        { path: "userId" },
+        { path: "house" },
+      ])
+
       res.status(200).send({
         error: false,
         details: await res.getModelListDetails(Reservation, {
