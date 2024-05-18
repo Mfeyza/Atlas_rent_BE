@@ -10,9 +10,7 @@ const PORT=process.env?.PORT || 8000
 require('express-async-errors')
 const {dbConnection}=require('./src/configs/dbConnection')
 dbConnection()
-app.use(cors({
-    origin: 'https://atlas-rent.vercel.app'
-}))
+app.use(cors())
 
 app.use(express.json())
 app.use(require('./src/middlewares/authentication'))
