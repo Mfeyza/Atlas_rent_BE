@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
     if (search) {
         searchQuery.$or= [
             { title: { $regex: search, $options: "i" } },
-            { description: { $regex: search, $options: "i" } },
+            { location: { $regex: search, $options: "i" } },
         ];
     }
     
