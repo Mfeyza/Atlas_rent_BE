@@ -11,7 +11,7 @@ require('express-async-errors')
 const {dbConnection}=require('./src/configs/dbConnection')
 dbConnection()
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: 'https://atlas-rent.vercel.app/'
 }))
 
 app.use(express.json())
