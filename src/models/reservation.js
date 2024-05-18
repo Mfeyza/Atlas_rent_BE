@@ -6,10 +6,14 @@ const ReservationSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    car:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Car',
+    },
     house: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'House',
-        required: true
+      
     },
     startDate: {
         type: Date,
@@ -19,9 +23,13 @@ const ReservationSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    amount: {
+    amountHouse: {
         type:Number,
         required: true
+    },
+    amountCar: {
+        type:Number,
+        
     },
     bodyCount:{
      type:Number

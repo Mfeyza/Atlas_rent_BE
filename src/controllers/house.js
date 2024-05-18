@@ -100,8 +100,8 @@ module.exports={
             #swagger.summary = "Delete House"
         */
         const data= await House.deleteOne({_id:req.params.id})
-        await Rating.deleteMany({houseId:req.params.id})
-        await Reservation.deleteMany({houseId:req.params.id})
+        await Rating.deleteMany({house:req.params.id})
+        await Reservation.deleteMany({house:req.params.id})
 
         console.log(data)
         res.status(data.deletedCount? 204 : 404).send({

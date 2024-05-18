@@ -10,8 +10,8 @@ router.route('/')
 
 router.route('/:id')
 .get(isLogin,read)
-.put(isAdmin,isLandLord,update)
+.put(isLogin,update)
 .patch(isAdmin,isLandLord,update)
-.delete(isAdmin,isLandLord,deleteReservation)
+.delete(deleteReservation)
 
 module.exports=router

@@ -1,6 +1,7 @@
 "use strict";
 const Reservation = require("../models/reservation");
 const House = require("../models/house");
+const Car=require("../models/car")
 
 module.exports = {
   list: async (req, res) => {
@@ -19,6 +20,7 @@ module.exports = {
         */
   //  if (req.query.author) {
   //  const data = await Reservation.find({ userId: req.query.author });
+  console.log(req.user)
     let customFilter = {};
     if (!req.user.isAdmin && !req.user.isLandLord) {
       customFilter = { userId: req.user._id };
@@ -27,6 +29,7 @@ module.exports = {
       const data = await Reservation.find({ userId: req.query.author }).populate([
         { path: "userId", select: "username firstName lastName image" },
         { path: "house" },
+        {path:"car"}
       ])
 
       res.status(200).send({
@@ -64,12 +67,12 @@ module.exports = {
     if ((!req.user.isAdmin && !req.user.isLandLord) || !req.body?.userId) {
       req.body.userId = req.user._id;
     }
-    if (!req.body.amount) {
+    if (!req.body.amountHouse) {
       const houseData = await House.findOne({ _id: req.body.house });
       const startDate = new Date(req.body.startDate);
       const endDate = new Date(req.body.endDate);
       const days = (endDate - startDate) / (1000 * 60 * 60 * 24);
-      req.body.amount = houseData.pricePerDay * days;
+      req.body.amountHouse = houseData.pricePerDay * days;
     }
     const userReservationInDates = await Reservation.findOne({
       userId: req.body.userId,
@@ -109,6 +112,7 @@ module.exports = {
     }).populate([
       { path: "userId", select: "username firstName lastName image" },
       { path: "house" },
+      {path:"car"}
     ]);
     res.status(200).send({
       error: false,
@@ -120,18 +124,26 @@ module.exports = {
             #swagger.tags = ["Reservations"]
             #swagger.summary = "Update Reservation"
         */
-    if (!req.body?.house) {
-      throw new Error("Please enter house");
-    }
+    
     if (!req.user.isAdmin) {
       delete req.body.userId;
     }
-    if (!req.body.amount) {
+    
+    if (!req.body.amountHouse && req.body.house) {
       const houseData = await House.findOne({ _id: req.body.house });
       const startDate = new Date(req.body.startDate);
       const endDate = new Date(req.body.endDate);
       const days = (endDate - startDate) / (1000 * 60 * 60 * 24);
-      req.body.amount = houseData.pricePerDay * days;
+      req.body.amountHouse = houseData.pricePerDay * days;
+     
+    }
+    
+    if (!req.body.amountCar && req.body.car) {
+      const carData = await Car.findOne({ _id: req.body.car });
+      const startDate = new Date(req.body.startDate);
+      const endDate = new Date(req.body.endDate);
+      const days = (endDate - startDate) / (1000 * 60 * 60 * 24);
+      req.body.amountCar = carData.pricePerDay * days;
     }
     const data = await Reservation.updateOne({ _id: req.params.id }, req.body, {
       runValidators: true,
