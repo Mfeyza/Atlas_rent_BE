@@ -5,6 +5,7 @@ module.exports = (req, res, next) => {
     const filter = req.query?.filter || {}
   
     const search = req.query?.search || "";
+    console.log(req.query);
     let searchQuery = [];
     if (search) {
         searchQuery.$or= [
@@ -25,17 +26,17 @@ module.exports = (req, res, next) => {
     skip = skip > 0 ? skip : (page * limit)
    
     res.getModelList = async (Model, customFilter = {}, populate = null) => {
-        return await Model.find({ ...filter, ...search, ...customFilter }).skip(skip).limit(limit).populate(populate)
+        return await Model.find({ ...filter, ...searchQuery, ...customFilter }).skip(skip).limit(limit).populate(populate)
     }
 
     // Details:
     res.getModelListDetails = async (Model, customFilter = {}) => {
 
-        const data = await Model.find({ ...filter, ...search, ...customFilter })
+        const data = await Model.find({ ...filter, ...searchQuery, ...customFilter })
 
         let details = {
             filter,
-            search,
+            searchQuery,
             skip,
             limit,
             page,

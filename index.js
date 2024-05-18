@@ -2,9 +2,7 @@ const express= require('express')
 const app= express()
 const cors = require('cors');
 
-
 require('dotenv').config()
-// const HOST=process.env?.HOST || '127.0.0.1'
 const PORT=process.env?.PORT || 8000
 
 require('express-async-errors')
@@ -33,5 +31,4 @@ app.use(require('./src/middlewares/errorHandler'))
 
 app.listen(PORT,()=> console.log(`http://:${PORT}`))
 
-// Syncronization ()
 // require('./src/helpers/sync')() // !!! It clear database.
