@@ -104,7 +104,7 @@ module.exports = {
       new: await Car.findOne({ _id: req.params.id }),
     });
   },
-  delete: async (req, res) => {
+  deleteCar: async (req, res) => {
     /*
             #swagger.tags = ["Cars"]
             #swagger.summary = "Delete Car"

@@ -517,6 +517,155 @@
         }
       }
     },
+    "/cars/": {
+      "get": {
+        "tags": [
+          "Cars"
+        ],
+        "summary": "List Cars",
+        "description": "  You can send query with endpoint for filter[], search[], sort[], page and limit.  <ul> Examples:   <li>URL/?<b>filter[field1]=value1&filter[field2]=value2</b></li>   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>   <li>URL/?<b>page=2&limit=1</b></li>  </ul>  ",
+        "parameters": [
+          {
+            "name": "starDate",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cars"
+        ],
+        "summary": "Create Car",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/cars/{id}": {
+      "get": {
+        "tags": [
+          "Cars"
+        ],
+        "summary": "Get Single Car",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Cars"
+        ],
+        "summary": "Update Car",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Cars"
+        ],
+        "summary": "Delete Car",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Cars"
+        ],
+        "summary": "Update Car",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/reservations/": {
       "get": {
         "tags": [
@@ -524,6 +673,13 @@
         ],
         "summary": "List Reservations",
         "description": "\r  You can send query with endpoint for filter[], search[], sort[], page and limit.\r  <ul> Examples:\r   <li>URL/?<b>filter[field1]=value1&filter[field2]=value2</b></li>\r   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>\r   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>\r   <li>URL/?<b>page=2&limit=1</b></li>\r  </ul>\r  ",
+        "parameters": [
+          {
+            "name": "author",
+            "in": "query",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -552,7 +708,7 @@
                 "userId": {
                   "example": "any"
                 },
-                "amount": {
+                "amountHouse": {
                   "example": "any"
                 },
                 "house": {
@@ -618,7 +774,7 @@
                 "userId": {
                   "example": "any"
                 },
-                "amount": {
+                "amountHouse": {
                   "example": "any"
                 },
                 "house": {
@@ -628,6 +784,12 @@
                   "example": "any"
                 },
                 "endDate": {
+                  "example": "any"
+                },
+                "amountCar": {
+                  "example": "any"
+                },
+                "car": {
                   "example": "any"
                 }
               }
@@ -685,7 +847,7 @@
                 "userId": {
                   "example": "any"
                 },
-                "amount": {
+                "amountHouse": {
                   "example": "any"
                 },
                 "house": {
@@ -695,6 +857,12 @@
                   "example": "any"
                 },
                 "endDate": {
+                  "example": "any"
+                },
+                "amountCar": {
+                  "example": "any"
+                },
+                "car": {
                   "example": "any"
                 }
               }
@@ -1208,6 +1376,18 @@
             }
           }
         },
+        "car": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "ref": {
+              "type": "string",
+              "example": "Car"
+            }
+          }
+        },
         "house": {
           "type": "object",
           "properties": {
@@ -1217,10 +1397,6 @@
             "ref": {
               "type": "string",
               "example": "House"
-            },
-            "required": {
-              "type": "boolean",
-              "example": true
             }
           }
         },
@@ -1248,7 +1424,7 @@
             }
           }
         },
-        "amount": {
+        "amountHouse": {
           "type": "object",
           "properties": {
             "type": {
@@ -1257,6 +1433,22 @@
             "required": {
               "type": "boolean",
               "example": true
+            }
+          }
+        },
+        "amountCar": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            }
+          }
+        },
+        "bodyCount": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
             }
           }
         },
