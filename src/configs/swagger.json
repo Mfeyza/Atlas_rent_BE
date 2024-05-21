@@ -347,10 +347,6 @@
     },
     "/tokens/{id}": {
       "get": {
-        "tags": [
-          "Tokens"
-        ],
-        "summary": "Get Single Token",
         "description": "",
         "parameters": [
           {
@@ -383,10 +379,6 @@
         }
       },
       "delete": {
-        "tags": [
-          "Tokens"
-        ],
-        "summary": "Delete Token",
         "description": "",
         "parameters": [
           {
