@@ -31,4 +31,4 @@ app.use(require('./src/middlewares/errorHandler'))
 
 app.listen(PORT,()=> console.log(`http://:${PORT}`))
 
-// require('./src/helpers/sync')() // !!! It clear database.
+// require('./src/helpers/sync')() 
