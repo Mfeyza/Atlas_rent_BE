@@ -58,9 +58,7 @@ module.exports = {
             #swagger.tags = ["Reservations"]
             #swagger.summary = "Create Reservation"
         */
-    if (!req.body?.house) {
-      throw new Error("Please enter house");
-    }
+   
     req.body.createdId = req.user._id;
     req.body.updatedId = req.user._id;
 
